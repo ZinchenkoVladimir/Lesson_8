@@ -5,14 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestHomePage {
+public class Test_Home_Page {
 
     private WebDriver driver;
-    public static HomePage homePage;
+    public static Home_Page homePage;
 
     @Before
     public void setUp() throws Exception {
@@ -23,7 +22,7 @@ public class TestHomePage {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         WebDriverRunner.setWebDriver(driver);
 
-        homePage = new HomePage(driver);
+        homePage = new Home_Page(driver);
     }
 
     @Test
