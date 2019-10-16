@@ -1,34 +1,36 @@
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainPageTest {
+public class TestHomePage {
 
-    public static WebDriver driver;
-    public static MainPage mainPage;
-    public static Selenide selenide;
+    private WebDriver driver;
+    public static HomePage homePage;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        // win mac linux
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        WebDriverRunner.setWebDriver(driver);
 
-        mainPage = new MainPage(driver);
+        homePage = new HomePage(driver);
     }
 
     @Test
     public void canSelectSizeLForTShirt() {
+
         Assert.assertTrue(
-                mainPage.openMainPage()
+                homePage.openMainPage()
                         .openTShirtTab()
                         .selectSizeL()
                         .isSizeL());
@@ -37,6 +39,6 @@ public class MainPageTest {
     @After
     public void cleanup(){
         driver.manage().deleteAllCookies();
-        driver.close();
+        driver.quit();
     }
 }
