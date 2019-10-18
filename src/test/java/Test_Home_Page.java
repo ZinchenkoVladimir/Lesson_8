@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Test_Home_Page {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
 
     public Test_Home_Page(){
     }
